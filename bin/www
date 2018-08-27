@@ -1,0 +1,19 @@
+// This is the application entry
+import http from 'http';
+import express from 'express';
+import path from 'path';
+import app from '../index.js'; // The express app
+
+// Log requests to the console.
+// app.use(logger('dev'));
+
+const server = http.createServer(app);
+const port = parseInt(process.env.PORT, 10) || 8100;
+
+app.get('*', (req, res) => res.status(200).send({
+    message: 'Welcome to the beginning of nothingness.',
+}));
+
+server.listen(port, () => {
+  console.log(`Server running on port ${port} on ${app.get('env')} mode`);
+});
